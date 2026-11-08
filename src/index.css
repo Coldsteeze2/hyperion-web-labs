@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  font-family: 'Plus Jakarta Sans', sans-serif;
   color-scheme: dark;
 }
 
@@ -9,42 +10,70 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  scroll-behavior: smooth;
 }
 
 body {
-  background-color: #05070c;
-  color: #e2e8f0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #030712;
+  color: #f8fafc;
   overflow-x: hidden;
 }
 
-.mono {
-  font-family: 'JetBrains Mono', monospace;
-}
-
-/* Fütüristik Kılavuz & Işıklar */
+/* Siber Izgara Arka Planı */
 .grid-overlay {
+  background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 44px 44px;
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
-/* Gelişmiş Neon Cam Kartlar */
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Buton Stilleri */
+.btn-primary {
+  background: linear-gradient(135deg, #06b6d4, #2563eb);
+  border: 1px solid #38bdf8;
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.55);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
 .glass-card {
-  background: rgba(11, 17, 30, 0.72);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(8, 12, 24, 0.7);
+  backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
-  position: relative;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.glass-card:hover {
-  border-color: rgba(6, 182, 212, 0.45);
-  box-shadow: 0 20px 45px -15px rgba(6, 182, 212, 0.18);
-  transform: translateY(-3px);
 }
 
 .glow-ambient {
@@ -55,63 +84,6 @@ body {
   z-index: 0;
 }
 
-/* Buton Stilleri */
-.btn-primary {
-  background: linear-gradient(135deg, #06b6d4, #0284c7);
-  color: #030712;
-  font-weight: 700;
-  border: none;
-  border-radius: 12px;
-  padding: 13px 26px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  box-shadow: 0 10px 25px -8px rgba(6, 182, 212, 0.4);
-}
-
-.btn-primary:hover {
-  filter: brightness(1.15);
-  transform: translateY(-2px);
-  box-shadow: 0 15px 30px -5px rgba(6, 182, 212, 0.55);
-}
-
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.04);
-  color: #f1f5f9;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
-  padding: 13px 26px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: #06b6d4;
-  color: #06b6d4;
-}
-
-/* Seçim Anahtarları (Pills) */
-.pill-active {
-  background: rgba(6, 182, 212, 0.15);
-  border: 1px solid #06b6d4;
-  color: #38bdf8;
-}
-
-.pill-inactive {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #94a3b8;
-}
 /* Siber Tarama ve Geçiş Animasyonları */
 @keyframes scanline {
   0% { transform: translateY(-100%); }
@@ -120,8 +92,8 @@ body {
 
 @keyframes cyberFlash {
   0% { opacity: 1; transform: scale(1); filter: blur(0px); }
-  60% { opacity: 0.9; transform: scale(1.08); filter: blur(4px); }
-  100% { opacity: 0; transform: scale(1.2); filter: blur(16px); }
+  60% { opacity: 0.9; transform: scale(1.06); filter: blur(4px); }
+  100% { opacity: 0; transform: scale(1.15); filter: blur(16px); }
 }
 
 .scanline-bar {
@@ -137,5 +109,39 @@ body {
 }
 
 .cyber-exit {
-  animation: cyberFlash 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+  animation: cyberFlash 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+}
+
+/* MOBİL DUYARLILIK (RESPONSIVE) */
+@media (max-width: 768px) {
+  header > div {
+    height: auto !important;
+    padding: 10px 14px !important;
+  }
+
+  header nav {
+    order: 3;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  h1 {
+    font-size: 1.85rem !important;
+    line-height: 1.25 !important;
+  }
+
+  h2 {
+    font-size: 1.45rem !important;
+  }
+
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cyber-door-card {
+    padding: 28px 18px !important;
+    margin: 0 10px !important;
+  }
 }

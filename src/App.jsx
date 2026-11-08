@@ -14,7 +14,6 @@ import {
   Cpu,
   Radio,
   Power,
-  Terminal as TerminalIcon,
   Activity
 } from 'lucide-react';
 import Navbar from './components/Navbar';
@@ -30,7 +29,7 @@ import { sound } from './utils/audio';
 import { translations } from './locales/translations';
 import bgmUrl from './music.mp3';
 
-// Müzik kontrol nesnesi
+// Müzik nesnesi tekil başlatılır
 const bgmTrack = new Audio(bgmUrl);
 bgmTrack.loop = true;
 bgmTrack.volume = 0.35;
@@ -42,7 +41,7 @@ export default function App() {
   const [activeMockupTab, setActiveMockupTab] = useState('ecommerce');
   const [isBgmPlaying, setIsBgmPlaying] = useState(false);
   
-  // Havalı Siber Giriş Durumları
+  // Fütüristik Giriş Durumları
   const [isEntered, setIsEntered] = useState(false);
   const [connecting, setConnecting] = useState(false);
   const [syncProgress, setSyncProgress] = useState(0);
@@ -52,23 +51,23 @@ export default function App() {
   const email = "contact@hyperionlabs.dev";
   const t = translations[lang] || translations.tr;
 
-  // AĞA BAĞLAN PROTOKOLÜ (Canlı Yükleme & Tarama Sekansı)
+  // AĞA BAĞLAN PROTOKOLÜ (Siber Tarama ve Ses Tetikleme)
   const handleEnterSystem = () => {
     if (connecting) return;
     sound.playClick();
     sound.playBeep();
     setConnecting(true);
 
-    // Müziği hazırla ve çal
+    // Müziği çal
     bgmTrack.play()
       .then(() => setIsBgmPlaying(true))
       .catch((err) => console.log("Audio lock:", err));
 
     const logs = [
-      { p: 18, msg: "INITIALIZING HYPERION KERNEL..." },
-      { p: 44, msg: "SYNCHRONIZING EDGE AUDIO BUFFER..." },
-      { p: 72, msg: "BYPASSING CLOUDFLARE NODE 14ms..." },
-      { p: 94, msg: "ESTABLISHING NEURAL UI LINK..." },
+      { p: 20, msg: "INITIALIZING HYPERION KERNEL..." },
+      { p: 48, msg: "SYNCHRONIZING EDGE AUDIO BUFFER..." },
+      { p: 75, msg: "BYPASSING CLOUDFLARE NODE 14ms..." },
+      { p: 92, msg: "ESTABLISHING NEURAL UI LINK..." },
       { p: 100, msg: "ACCESS GRANTED // WELCOME TO GRID" }
     ];
 
@@ -82,7 +81,7 @@ export default function App() {
       } else {
         clearInterval(interval);
         sound.playBeep();
-        setIsExiting(true); // Beyaz patlama animasyonu başlat
+        setIsExiting(true);
         setTimeout(() => {
           setIsEntered(true);
         }, 500);
@@ -143,7 +142,7 @@ export default function App() {
   return (
     <div className="grid-overlay" style={{ minHeight: '100vh', position: 'relative' }}>
       
-      {/* ----------------- FÜTÜRİSTİK SİBER GİRİŞ KAPISI ----------------- */}
+      {/* ----------------- MOBİL UYUMLU FÜTÜRİSTİK SİBER GİRİŞ KAPISI ----------------- */}
       {!isEntered && (
         <div 
           className={isExiting ? "cyber-exit" : ""}
@@ -156,95 +155,96 @@ export default function App() {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '24px',
+            padding: '16px',
             backgroundImage: 'radial-gradient(circle at center, rgba(6, 182, 212, 0.14) 0%, #030712 80%)'
           }}
         >
           {/* Siber Arka Plan Parçacıkları */}
           <CyberCanvas />
 
-          {/* Tarama Işığı */}
+          {/* Tarama Çizgisi */}
           <div className="scanline-bar" />
 
-          <div style={{
-            position: 'relative',
-            zIndex: 10,
-            maxWidth: '540px',
-            width: '100%',
-            textAlign: 'center',
-            background: 'rgba(5, 9, 20, 0.88)',
-            border: connecting ? '1px solid #38bdf8' : '1px solid rgba(6, 182, 212, 0.35)',
-            borderRadius: '24px',
-            padding: '44px 36px',
-            backdropFilter: 'blur(25px)',
-            boxShadow: connecting 
-              ? '0 0 70px rgba(6, 182, 212, 0.45), inset 0 0 30px rgba(6, 182, 212, 0.2)' 
-              : '0 20px 60px rgba(0, 0, 0, 0.8)'
-          }}>
-            {/* Üst HUD Protokol Rozeti */}
+          <div 
+            className="cyber-door-card"
+            style={{
+              position: 'relative',
+              zIndex: 10,
+              maxWidth: '520px',
+              width: '100%',
+              textAlign: 'center',
+              background: 'rgba(5, 9, 20, 0.88)',
+              border: connecting ? '1px solid #38bdf8' : '1px solid rgba(6, 182, 212, 0.35)',
+              borderRadius: '24px',
+              padding: '40px 30px',
+              backdropFilter: 'blur(25px)',
+              boxShadow: connecting 
+                ? '0 0 70px rgba(6, 182, 212, 0.45)' 
+                : '0 20px 60px rgba(0, 0, 0, 0.8)'
+            }}
+          >
+            {/* Üst HUD Protokolü */}
             <div className="mono" style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '8px',
-              padding: '6px 16px',
+              gap: '6px',
+              padding: '5px 14px',
               background: 'rgba(6, 182, 212, 0.1)',
               border: '1px solid rgba(6, 182, 212, 0.3)',
               borderRadius: '999px',
               color: '#38bdf8',
-              fontSize: '0.75rem',
-              marginBottom: '24px'
+              fontSize: '0.72rem',
+              marginBottom: '20px'
             }}>
-              <Radio size={13} style={{ animation: 'spin 3s linear infinite' }} />
-              <span>HYPERION OS // EDGE PROTOCOL V4.2</span>
+              <Radio size={12} style={{ animation: 'spin 3s linear infinite' }} />
+              <span>HYPERION OS // EDGE PROTOCOL</span>
             </div>
 
-            {/* Logo Kutusu */}
+            {/* Logo */}
             <div style={{
-              width: '68px',
-              height: '68px',
-              margin: '0 auto 22px',
-              borderRadius: '18px',
+              width: '60px',
+              height: '60px',
+              margin: '0 auto 18px',
+              borderRadius: '16px',
               background: 'linear-gradient(135deg, #06b6d4, #2563eb)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              boxShadow: '0 0 32px rgba(6, 182, 212, 0.55)',
-              border: '1px solid rgba(255, 255, 255, 0.2)'
+              boxShadow: '0 0 28px rgba(6, 182, 212, 0.55)'
             }}>
-              <Cpu size={34} color="#030712" strokeWidth={2.5} />
+              <Cpu size={30} color="#030712" strokeWidth={2.5} />
             </div>
 
-            <h2 style={{ fontSize: '1.9rem', fontWeight: 800, letterSpacing: '-0.5px', marginBottom: '8px' }}>
+            <h2 style={{ fontSize: '1.75rem', fontWeight: 800, letterSpacing: '-0.5px', marginBottom: '8px' }}>
               HYPERION WEB LABS
             </h2>
 
-            <p style={{ color: '#94a3b8', fontSize: '0.94rem', lineHeight: 1.6, marginBottom: '28px' }}>
+            <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.55, marginBottom: '24px' }}>
               {connecting 
                 ? 'Siber ağ tüneli senkronize ediliyor. Güvenlik anahtarları doğrulanıyor...' 
                 : 'Yeni nesil dijital ajans motoru, Web Audio ses sentezleyici ve reaktif arayüz bileşenleri hazır.'}
             </p>
 
-            {/* Canlı İlerleme Çubuğu ve Konsol Kaydı (Bağlanırken görünür) */}
+            {/* Canlı İlerleme Çubuğu */}
             {connecting && (
-              <div style={{ marginBottom: '22px' }}>
+              <div style={{ marginBottom: '20px' }}>
                 <div style={{
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  marginBottom: '8px'
+                  marginBottom: '6px'
                 }}>
-                  <span className="mono" style={{ fontSize: '0.72rem', color: '#38bdf8', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span className="mono" style={{ fontSize: '0.68rem', color: '#38bdf8', display: 'flex', alignItems: 'center', gap: '6px' }}>
                     <Activity size={12} />
                     {syncLog}
                   </span>
-                  <span className="mono" style={{ fontSize: '0.8rem', fontWeight: 800, color: '#38bdf8' }}>
+                  <span className="mono" style={{ fontSize: '0.75rem', fontWeight: 800, color: '#38bdf8' }}>
                     %{syncProgress}
                   </span>
                 </div>
-                {/* Bar */}
                 <div style={{
                   width: '100%',
-                  height: '6px',
+                  height: '5px',
                   background: 'rgba(255, 255, 255, 0.08)',
                   borderRadius: '999px',
                   overflow: 'hidden'
@@ -253,7 +253,7 @@ export default function App() {
                     width: `${syncProgress}%`,
                     height: '100%',
                     background: 'linear-gradient(90deg, #06b6d4, #38bdf8)',
-                    boxShadow: '0 0 12px #38bdf8',
+                    boxShadow: '0 0 10px #38bdf8',
                     transition: 'width 0.2s ease'
                   }} />
                 </div>
@@ -267,31 +267,31 @@ export default function App() {
               disabled={connecting}
               style={{
                 width: '100%',
-                padding: '16px',
+                padding: '14px',
                 borderRadius: '12px',
                 background: connecting 
                   ? 'rgba(6, 182, 212, 0.15)' 
                   : 'linear-gradient(135deg, #06b6d4, #2563eb)',
                 border: '1px solid #38bdf8',
                 color: '#fff',
-                fontSize: '0.95rem',
+                fontSize: '0.9rem',
                 fontWeight: 800,
                 cursor: connecting ? 'wait' : 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '10px',
+                gap: '8px',
                 letterSpacing: '1px',
-                boxShadow: connecting ? 'none' : '0 0 28px rgba(6, 182, 212, 0.45)',
-                transition: 'all 0.25s ease'
+                boxShadow: connecting ? 'none' : '0 0 25px rgba(6, 182, 212, 0.45)',
+                transition: 'all 0.2s ease'
               }}
             >
-              <Power size={18} />
-              <span>{connecting ? 'AŞIRI YÜKLEME BAŞLATILDI...' : 'AĞA BAĞLAN // CONNECT TO GRID'}</span>
+              <Power size={17} />
+              <span>{connecting ? 'AŞIRI YÜKLEME...' : 'AĞA BAĞLAN // CONNECT TO GRID'}</span>
             </button>
 
-            <div className="mono" style={{ color: '#64748b', fontSize: '0.72rem', marginTop: '16px' }}>
-              {connecting ? '[GÜVENLİK DUVARI AŞILIYOR]' : '[SES MOTORU & ARKA PLAN MÜZİĞİ AKTİF EDİLECEK]'}
+            <div className="mono" style={{ color: '#64748b', fontSize: '0.68rem', marginTop: '14px' }}>
+              {connecting ? '[GÜVENLİK DUVARI AŞILIYOR]' : '[SES MOTORU & MÜZİK AKTİF EDİLECEK]'}
             </div>
           </div>
         </div>
@@ -314,7 +314,7 @@ export default function App() {
       />
 
       {/* Ana Gövde */}
-      <main style={{ maxWidth: '1180px', margin: '0 auto', padding: '40px 24px', position: 'relative', zIndex: 1 }}>
+      <main style={{ maxWidth: '1180px', margin: '0 auto', padding: '30px 18px', position: 'relative', zIndex: 1 }}>
         
         {currentPage === 'home' && (
           <div>
@@ -323,7 +323,7 @@ export default function App() {
               position: 'relative',
               borderRadius: '24px',
               overflow: 'hidden',
-              padding: '75px 24px 60px',
+              padding: '65px 20px 50px',
               textAlign: 'center',
               border: '1px solid rgba(6, 182, 212, 0.3)',
               background: 'rgba(4, 7, 17, 0.75)',
@@ -346,33 +346,32 @@ export default function App() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '8px',
-                  padding: '6px 18px',
+                  padding: '5px 14px',
                   borderRadius: '999px',
                   background: 'rgba(6, 182, 212, 0.1)',
                   border: '1px solid rgba(6, 182, 212, 0.35)',
                   color: '#38bdf8',
-                  fontSize: '0.8rem',
-                  marginBottom: '22px',
-                  boxShadow: '0 0 15px rgba(6, 182, 212, 0.2)'
+                  fontSize: '0.75rem',
+                  marginBottom: '20px'
                 }}>
-                  <Sparkles size={14} />
+                  <Sparkles size={13} />
                   {lang === 'tr' ? 'MARKANIZA ÖZEL SIFIRDAN WEB GELİŞTİRME' : 'BESPOKE WEB DESIGN & CODE STUDIO'}
                 </div>
 
-                <h1 style={{ fontSize: 'clamp(2.3rem, 5vw, 4.1rem)', fontWeight: 800, lineHeight: 1.18, letterSpacing: '-1.5px', marginBottom: '20px' }}>
+                <h1 style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', fontWeight: 800, lineHeight: 1.2, letterSpacing: '-1px', marginBottom: '18px' }}>
                   {lang === 'tr' ? 'Markanızı Sıradanlıktan Kurtarın.' : 'Ditch Generic Templates.'} <br/>
                   <span style={{ background: 'linear-gradient(90deg, #38bdf8, #818cf8, #c084fc)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                     {lang === 'tr' ? 'Sıfırdan Kodlanan Özel Siteler Kuruyoruz.' : 'We Build Custom Sites From Scratch.'}
                   </span>
                 </h1>
 
-                <p style={{ color: '#94a3b8', fontSize: '1.1rem', maxWidth: '720px', margin: '0 auto 36px', lineHeight: 1.6 }}>
+                <p style={{ color: '#94a3b8', fontSize: '1rem', maxWidth: '700px', margin: '0 auto 30px', lineHeight: 1.6 }}>
                   {lang === 'tr' 
                     ? 'Hazır kalıplar ve kasan WordPress temaları yerine markanızın kimliğine özel, telefonlarda yağ gibi kayan, Google uyumlu ve anahtar teslim web siteleri inşa ediyoruz.'
                     : 'We engineer blazing-fast, custom-tailored websites for businesses that want to stand out from generic page builders.'}
                 </p>
 
-                <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
                   <button 
                     onClick={() => {
                       sound.playClick();
@@ -380,10 +379,10 @@ export default function App() {
                     }} 
                     onMouseEnter={() => sound.playHover()}
                     className="btn-primary"
-                    style={{ padding: '14px 32px', fontSize: '0.95rem' }}
+                    style={{ padding: '12px 28px', fontSize: '0.9rem' }}
                   >
                     <span>{lang === 'tr' ? 'Markanız İçin Teklif Alın' : 'Start Your Project'}</span>
-                    <ArrowRight size={18} />
+                    <ArrowRight size={17} />
                   </button>
                   <button 
                     onClick={() => {
@@ -392,7 +391,7 @@ export default function App() {
                     }} 
                     onMouseEnter={() => sound.playHover()}
                     className="btn-secondary"
-                    style={{ padding: '14px 28px', fontSize: '0.95rem' }}
+                    style={{ padding: '12px 24px', fontSize: '0.9rem' }}
                   >
                     <span>{lang === 'tr' ? 'Canlı Yazılım Laboratuvarı' : 'Interactive Sandbox'}</span>
                   </button>
@@ -401,18 +400,18 @@ export default function App() {
             </section>
 
             {/* BROWSER SHOWCASE */}
-            <section style={{ marginTop: '70px' }}>
-              <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-                <div className="mono" style={{ color: '#06b6d4', fontSize: '0.78rem', letterSpacing: '2px' }}>
+            <section style={{ marginTop: '60px' }}>
+              <div style={{ textAlign: 'center', marginBottom: '26px' }}>
+                <div className="mono" style={{ color: '#06b6d4', fontSize: '0.75rem', letterSpacing: '2px' }}>
                   {lang === 'tr' ? 'CANLI PROJE MOCKUP VİTRİNİ' : 'INTERACTIVE PORTFOLIO'}
                 </div>
-                <h2 style={{ fontSize: '2.2rem', fontWeight: 800, marginTop: '6px' }}>
+                <h2 style={{ fontSize: '2rem', fontWeight: 800, marginTop: '6px' }}>
                   {lang === 'tr' ? 'Hangi Sektöre Nasıl Bir Site Yapıyoruz?' : 'Explore What We Build'}
                 </h2>
               </div>
 
               {/* Sektör Butonları */}
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginBottom: '24px', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginBottom: '20px', flexWrap: 'wrap' }}>
                 <button
                   onClick={() => { sound.playClick(); setActiveMockupTab('ecommerce'); }}
                   onMouseEnter={() => sound.playHover()}
@@ -420,19 +419,19 @@ export default function App() {
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '8px',
-                    padding: '10px 18px',
+                    gap: '6px',
+                    padding: '8px 14px',
                     borderRadius: '10px',
                     cursor: 'pointer',
                     background: activeMockupTab === 'ecommerce' ? 'rgba(56, 189, 248, 0.18)' : 'rgba(255,255,255,0.03)',
                     border: activeMockupTab === 'ecommerce' ? '1px solid #38bdf8' : '1px solid rgba(255,255,255,0.08)',
                     color: activeMockupTab === 'ecommerce' ? '#38bdf8' : '#94a3b8',
-                    fontSize: '0.85rem',
+                    fontSize: '0.8rem',
                     fontWeight: 600
                   }}
                 >
-                  <Shirt size={16} />
-                  <span>E-Ticaret &amp; Marka Vitrini</span>
+                  <Shirt size={15} />
+                  <span>E-Ticaret</span>
                 </button>
 
                 <button
@@ -442,19 +441,19 @@ export default function App() {
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '8px',
-                    padding: '10px 18px',
+                    gap: '6px',
+                    padding: '8px 14px',
                     borderRadius: '10px',
                     cursor: 'pointer',
                     background: activeMockupTab === 'restaurant' ? 'rgba(234, 179, 8, 0.18)' : 'rgba(255,255,255,0.03)',
                     border: activeMockupTab === 'restaurant' ? '1px solid #eab308' : '1px solid rgba(255,255,255,0.08)',
                     color: activeMockupTab === 'restaurant' ? '#eab308' : '#94a3b8',
-                    fontSize: '0.85rem',
+                    fontSize: '0.8rem',
                     fontWeight: 600
                   }}
                 >
-                  <UtensilsCrossed size={16} />
-                  <span>Restoran &amp; QR Menü</span>
+                  <UtensilsCrossed size={15} />
+                  <span>Restoran / Menü</span>
                 </button>
 
                 <button
@@ -464,19 +463,19 @@ export default function App() {
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '8px',
-                    padding: '10px 18px',
+                    gap: '6px',
+                    padding: '8px 14px',
                     borderRadius: '10px',
                     cursor: 'pointer',
                     background: activeMockupTab === 'corporate' ? 'rgba(168, 85, 247, 0.18)' : 'rgba(255,255,255,0.03)',
                     border: activeMockupTab === 'corporate' ? '1px solid #a855f7' : '1px solid rgba(255,255,255,0.08)',
                     color: activeMockupTab === 'corporate' ? '#a855f7' : '#94a3b8',
-                    fontSize: '0.85rem',
+                    fontSize: '0.8rem',
                     fontWeight: 600
                   }}
                 >
-                  <Building2 size={16} />
-                  <span>Kurumsal Şirket Vitrini</span>
+                  <Building2 size={15} />
+                  <span>Kurumsal</span>
                 </button>
               </div>
 
@@ -485,83 +484,82 @@ export default function App() {
                 borderRadius: '16px',
                 border: '1px solid rgba(255, 255, 255, 0.15)',
                 overflow: 'hidden',
-                boxShadow: '0 30px 80px rgba(0,0,0,0.7)',
                 backgroundColor: '#050811'
               }}>
                 <div style={{
-                  padding: '12px 18px',
+                  padding: '10px 14px',
                   background: 'rgba(255, 255, 255, 0.04)',
                   borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  gap: '12px'
+                  gap: '8px'
                 }}>
-                  <div style={{ display: 'flex', gap: '6px' }}>
-                    <span style={{ width: '11px', height: '11px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
-                    <span style={{ width: '11px', height: '11px', borderRadius: '50%', backgroundColor: '#eab308' }} />
-                    <span style={{ width: '11px', height: '11px', borderRadius: '50%', backgroundColor: '#22c55e' }} />
+                  <div style={{ display: 'flex', gap: '5px' }}>
+                    <span style={{ width: '9px', height: '9px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
+                    <span style={{ width: '9px', height: '9px', borderRadius: '50%', backgroundColor: '#eab308' }} />
+                    <span style={{ width: '9px', height: '9px', borderRadius: '50%', backgroundColor: '#22c55e' }} />
                   </div>
 
                   <div className="mono" style={{
                     flex: '1',
-                    maxWidth: '480px',
+                    maxWidth: '420px',
                     background: 'rgba(0,0,0,0.4)',
                     border: '1px solid rgba(255, 255, 255, 0.1)',
-                    borderRadius: '8px',
-                    padding: '5px 14px',
-                    fontSize: '0.75rem',
+                    borderRadius: '6px',
+                    padding: '4px 10px',
+                    fontSize: '0.72rem',
                     color: '#94a3b8',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '8px'
+                    gap: '6px'
                   }}>
                     <span style={{ color: '#10b981' }}>🔒</span>
-                    <span style={{ color: '#f8fafc' }}>{currentMockup.domain}</span>
+                    <span style={{ color: '#f8fafc', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{currentMockup.domain}</span>
                   </div>
 
-                  <span className="mono" style={{ fontSize: '0.72rem', color: currentMockup.accent, fontWeight: 700 }}>
+                  <span className="mono" style={{ fontSize: '0.68rem', color: currentMockup.accent, fontWeight: 700 }}>
                     {currentMockup.tag}
                   </span>
                 </div>
 
-                <div style={{ padding: '40px 32px', minHeight: '320px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <div style={{ maxWidth: '780px', margin: '0 auto', textAlign: 'center' }}>
+                <div style={{ padding: '32px 18px', textAlign: 'center' }}>
+                  <div style={{ maxWidth: '740px', margin: '0 auto' }}>
                     <span className="mono" style={{
                       display: 'inline-block',
-                      padding: '4px 12px',
+                      padding: '3px 10px',
                       borderRadius: '6px',
                       background: currentMockup.accentBg,
                       color: currentMockup.accent,
-                      fontSize: '0.78rem',
+                      fontSize: '0.74rem',
                       fontWeight: 700,
-                      marginBottom: '14px'
+                      marginBottom: '12px'
                     }}>
                       {currentMockup.title}
                     </span>
 
-                    <h3 style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)', fontWeight: 800, marginBottom: '12px' }}>
+                    <h3 style={{ fontSize: 'clamp(1.4rem, 3.5vw, 2.2rem)', fontWeight: 800, marginBottom: '10px' }}>
                       {currentMockup.heroTitle}
                     </h3>
 
-                    <p style={{ color: '#94a3b8', fontSize: '1rem', lineHeight: 1.6, marginBottom: '26px' }}>
+                    <p style={{ color: '#94a3b8', fontSize: '0.92rem', lineHeight: 1.6, marginBottom: '22px' }}>
                       {currentMockup.desc}
                     </p>
 
-                    <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap', marginBottom: '28px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', flexWrap: 'wrap', marginBottom: '24px' }}>
                       {currentMockup.stats.map((s, idx) => (
                         <div key={idx} style={{
                           display: 'flex',
                           alignItems: 'center',
                           gap: '6px',
                           color: '#e2e8f0',
-                          fontSize: '0.85rem',
+                          fontSize: '0.78rem',
                           background: 'rgba(255, 255, 255, 0.04)',
                           border: '1px solid rgba(255, 255, 255, 0.08)',
-                          padding: '6px 14px',
+                          padding: '5px 12px',
                           borderRadius: '8px'
                         }}>
-                          <CheckCircle2 size={16} color={currentMockup.accent} />
+                          <CheckCircle2 size={14} color={currentMockup.accent} />
                           <span>{s}</span>
                         </div>
                       ))}
@@ -574,10 +572,10 @@ export default function App() {
                       }}
                       onMouseEnter={() => sound.playHover()}
                       className="btn-primary"
-                      style={{ padding: '10px 24px', fontSize: '0.88rem' }}
+                      style={{ padding: '10px 22px', fontSize: '0.85rem' }}
                     >
-                      <span>Benim Markam İçin Bu Kalitede Bir Site Yapın</span>
-                      <ArrowRight size={16} />
+                      <span>Bu Kalitede Bir Site Yapın</span>
+                      <ArrowRight size={15} />
                     </button>
                   </div>
                 </div>
@@ -585,49 +583,49 @@ export default function App() {
             </section>
 
             {/* GÜVEN KARTLARI */}
-            <section style={{ marginTop: '75px' }}>
-              <div style={{ textAlign: 'center', marginBottom: '36px' }}>
-                <div className="mono" style={{ color: '#10b981', fontSize: '0.78rem', letterSpacing: '2px' }}>
+            <section style={{ marginTop: '65px' }}>
+              <div style={{ textAlign: 'center', marginBottom: '30px' }}>
+                <div className="mono" style={{ color: '#10b981', fontSize: '0.75rem', letterSpacing: '2px' }}>
                   {lang === 'tr' ? 'ANAHTAR TESLİM HİZMET KAPSAMI' : 'FULL TURNKEY SCOPE'}
                 </div>
-                <h2 style={{ fontSize: '2.2rem', fontWeight: 800, marginTop: '6px' }}>
+                <h2 style={{ fontSize: '2rem', fontWeight: 800, marginTop: '6px' }}>
                   {lang === 'tr' ? 'Siz Sadece İsteyin, Gerisini Bize Bırakın' : 'Everything Handled For Your Brand'}
                 </h2>
               </div>
 
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                gap: '20px'
+                gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+                gap: '16px'
               }}>
-                <div className="glass-card" style={{ padding: '26px' }}>
-                  <Globe2 size={28} color="#06b6d4" style={{ marginBottom: '14px' }} />
-                  <h4 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '6px' }}>Alan Adı (.com) &amp; DNS</h4>
-                  <p style={{ color: '#94a3b8', fontSize: '0.88rem', lineHeight: 1.5 }}>
+                <div className="glass-card" style={{ padding: '22px' }}>
+                  <Globe2 size={26} color="#06b6d4" style={{ marginBottom: '12px' }} />
+                  <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '6px' }}>Alan Adı (.com) &amp; DNS</h4>
+                  <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.5 }}>
                     İstediğiniz alan adını seçiyoruz, küresel CDN sunucularına sıfır hatayla bağlıyoruz.
                   </p>
                 </div>
 
-                <div className="glass-card" style={{ padding: '26px' }}>
-                  <ShieldCheck size={28} color="#10b981" style={{ marginBottom: '14px' }} />
-                  <h4 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '6px' }}>256-Bit SSL Güvenliği</h4>
-                  <p style={{ color: '#94a3b8', fontSize: '0.88rem', lineHeight: 1.5 }}>
-                    Müşterilerinizin ve sitenizin güvenliğini sağlayan yeşil kilit SSL sertifikası ömür boyu aktif kalır.
+                <div className="glass-card" style={{ padding: '22px' }}>
+                  <ShieldCheck size={26} color="#10b981" style={{ marginBottom: '12px' }} />
+                  <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '6px' }}>256-Bit SSL Güvenliği</h4>
+                  <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.5 }}>
+                    Sitenizin güvenliğini sağlayan yeşil kilit SSL sertifikası ömür boyu aktif kalır.
                   </p>
                 </div>
 
-                <div className="glass-card" style={{ padding: '26px' }}>
-                  <Mail size={28} color="#a855f7" style={{ marginBottom: '14px' }} />
-                  <h4 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '6px' }}>Kurumsal E-Posta</h4>
-                  <p style={{ color: '#94a3b8', fontSize: '0.88rem', lineHeight: 1.5 }}>
+                <div className="glass-card" style={{ padding: '22px' }}>
+                  <Mail size={26} color="#a855f7" style={{ marginBottom: '12px' }} />
+                  <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '6px' }}>Kurumsal E-Posta</h4>
+                  <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.5 }}>
                     Markanıza özel info@sirketiniz.com e-posta adreslerinizin kurulumu yapılır.
                   </p>
                 </div>
 
-                <div className="glass-card" style={{ padding: '26px' }}>
-                  <Search size={28} color="#eab308" style={{ marginBottom: '14px' }} />
-                  <h4 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '6px' }}>Google SEO Kaydı</h4>
-                  <p style={{ color: '#94a3b8', fontSize: '0.88rem', lineHeight: 1.5 }}>
+                <div className="glass-card" style={{ padding: '22px' }}>
+                  <Search size={26} color="#eab308" style={{ marginBottom: '12px' }} />
+                  <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '6px' }}>Google SEO Kaydı</h4>
+                  <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.5 }}>
                     Arama motoru indeksleme ayarları yapılarak aramalarda bulunmanız sağlanır.
                   </p>
                 </div>
@@ -636,21 +634,21 @@ export default function App() {
 
             {/* WHATSAPP ÇAĞRISI */}
             <section style={{
-              marginTop: '80px',
-              padding: '45px 30px',
+              marginTop: '70px',
+              padding: '38px 20px',
               borderRadius: '20px',
               background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.12), rgba(168, 85, 247, 0.12))',
               border: '1px solid rgba(6, 182, 212, 0.3)',
               textAlign: 'center'
             }}>
-              <h3 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '10px' }}>
+              <h3 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '10px' }}>
                 Aklınızdaki Web Sitesi Projesini Konuşalım
               </h3>
-              <p style={{ color: '#94a3b8', fontSize: '1rem', maxWidth: '580px', margin: '0 auto 26px', lineHeight: 1.6 }}>
+              <p style={{ color: '#94a3b8', fontSize: '0.95rem', maxWidth: '560px', margin: '0 auto 24px', lineHeight: 1.6 }}>
                 İhtiyacınızı WhatsApp'tan yazın, markanız için en uygun site mimarisini ve yol haritasını anında çıkaralım.
               </p>
               
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
                 <a 
                   href="https://wa.me/" 
                   target="_blank" 
@@ -658,9 +656,9 @@ export default function App() {
                   onMouseEnter={() => sound.playHover()}
                   onClick={() => sound.playClick()}
                   className="btn-primary"
-                  style={{ padding: '12px 28px', fontSize: '0.92rem', display: 'flex', alignItems: 'center', gap: '8px' }}
+                  style={{ padding: '12px 24px', fontSize: '0.88rem', display: 'flex', alignItems: 'center', gap: '8px' }}
                 >
-                  <MessageSquare size={18} />
+                  <MessageSquare size={17} />
                   <span>WhatsApp ile Fikir Danışın</span>
                 </a>
                 <button
@@ -670,14 +668,14 @@ export default function App() {
                   }}
                   onMouseEnter={() => sound.playHover()}
                   className="btn-secondary"
-                  style={{ padding: '12px 26px', fontSize: '0.92rem' }}
+                  style={{ padding: '12px 22px', fontSize: '0.88rem' }}
                 >
                   <span>Teknik Formu Doldur</span>
                 </button>
               </div>
             </section>
 
-            {/* Terminal Konsolu */}
+            {/* Konsol */}
             <DevConsole setCurrentPage={setCurrentPage} email={email} />
           </div>
         )}

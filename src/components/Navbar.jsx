@@ -44,81 +44,48 @@ export default function Navbar({
       position: 'sticky',
       top: 0,
       zIndex: 100,
-      backgroundColor: 'rgba(5, 7, 12, 0.85)',
+      backgroundColor: 'rgba(5, 7, 12, 0.92)',
       backdropFilter: 'blur(16px)',
       borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
     }}>
       <div style={{
         maxWidth: '1240px',
         margin: '0 auto',
-        padding: '0 20px',
-        height: '75px',
+        padding: '10px 18px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        gap: '12px'
+        flexWrap: 'wrap',
+        gap: '10px'
       }}>
         {/* Logo */}
         <div 
           onClick={() => handleTabClick('home')}
           onMouseEnter={() => sound.playHover()}
-          style={{ display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer', flexShrink: 0 }}
+          style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}
         >
           <div style={{
-            width: '38px',
-            height: '38px',
+            width: '36px',
+            height: '36px',
             borderRadius: '10px',
             background: 'linear-gradient(135deg, #06b6d4, #0284c7)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 0 18px rgba(6, 182, 212, 0.35)'
+            boxShadow: '0 0 16px rgba(6, 182, 212, 0.35)'
           }}>
-            <Terminal size={20} color="#030712" strokeWidth={2.5} />
+            <Terminal size={18} color="#030712" strokeWidth={2.5} />
           </div>
           <div>
-            <div style={{ fontWeight: 800, fontSize: '1.15rem', letterSpacing: '-0.5px' }}>HYPERION</div>
-            <div className="mono" style={{ fontSize: '0.62rem', color: '#06b6d4', letterSpacing: '2.5px', marginTop: '-3px' }}>WEB LABS</div>
+            <div style={{ fontWeight: 800, fontSize: '1.05rem', letterSpacing: '-0.5px' }}>HYPERION</div>
+            <div className="mono" style={{ fontSize: '0.58rem', color: '#06b6d4', letterSpacing: '2px', marginTop: '-3px' }}>WEB LABS</div>
           </div>
         </div>
 
-        {/* Sayfa Sekmeleri */}
-        <nav style={{
-          display: 'flex',
-          gap: '6px',
-          background: 'rgba(255, 255, 255, 0.03)',
-          padding: '5px',
-          borderRadius: '12px',
-          border: '1px solid rgba(255, 255, 255, 0.06)'
-        }}>
-          {tabs.map(tab => (
-            <button
-              key={tab.id}
-              onClick={() => handleTabClick(tab.id)}
-              onMouseEnter={() => sound.playHover()}
-              className="mono"
-              style={{
-                background: currentPage === tab.id ? 'rgba(6, 182, 212, 0.2)' : 'transparent',
-                color: currentPage === tab.id ? '#38bdf8' : '#94a3b8',
-                border: currentPage === tab.id ? '1px solid rgba(6, 182, 212, 0.4)' : '1px solid transparent',
-                padding: '6px 14px',
-                borderRadius: '8px',
-                fontSize: '0.8rem',
-                fontWeight: 600,
-                cursor: 'pointer',
-                transition: '0.2s',
-                whiteSpace: 'nowrap'
-              }}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </nav>
-
-        {/* Sağ Taraf: Müzik, Durum, Dil ve Ses */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+        {/* Sağ Taraf: Müzik, HUD, Dil ve İletişim */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           
-          {/* Müzik Durdur / Başlat Butonu (Tıklamayı arkadaki sayfaya geçirmez) */}
+          {/* Müzik Butonu */}
           <button
             onClick={(e) => toggleBgm(e)}
             onMouseEnter={() => sound.playHover()}
@@ -127,50 +94,39 @@ export default function Navbar({
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '6px',
+              gap: '5px',
               background: isBgmPlaying ? 'rgba(168, 85, 247, 0.22)' : 'rgba(255, 255, 255, 0.05)',
               border: isBgmPlaying ? '1px solid #c084fc' : '1px solid rgba(255, 255, 255, 0.12)',
               color: isBgmPlaying ? '#c084fc' : '#94a3b8',
-              padding: '6px 12px',
+              padding: '6px 10px',
               borderRadius: '8px',
               cursor: 'pointer',
-              fontSize: '0.74rem',
-              fontWeight: 700,
-              boxShadow: isBgmPlaying ? '0 0 12px rgba(168, 85, 247, 0.35)' : 'none',
-              transition: 'all 0.2s ease'
+              fontSize: '0.72rem',
+              fontWeight: 700
             }}
           >
-            {isBgmPlaying ? (
-              <>
-                <Pause size={14} fill="#c084fc" />
-                <span>MÜZİK: AÇIK</span>
-              </>
-            ) : (
-              <>
-                <Play size={14} fill="#94a3b8" />
-                <span>MÜZİK: DURDU</span>
-              </>
-            )}
+            {isBgmPlaying ? <Pause size={13} fill="#c084fc" /> : <Play size={13} fill="#94a3b8" />}
+            <span>{isBgmPlaying ? 'SES: AÇIK' : 'SES: KAPALI'}</span>
           </button>
 
-          {/* HUD Göstergesi */}
+          {/* HUD Ping */}
           <div className="mono" style={{
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '6px',
+            gap: '4px',
             background: 'rgba(16, 185, 129, 0.08)',
             border: '1px solid rgba(16, 185, 129, 0.25)',
             color: '#10b981',
-            padding: '6px 10px',
+            padding: '6px 8px',
             borderRadius: '8px',
-            fontSize: '0.7rem',
+            fontSize: '0.68rem',
             fontWeight: 700
           }}>
-            <Radio size={12} />
+            <Radio size={11} />
             <span>14ms</span>
           </div>
 
-          {/* TR / EN */}
+          {/* Dil */}
           <button
             onClick={toggleLang}
             onMouseEnter={() => sound.playHover()}
@@ -179,21 +135,17 @@ export default function Navbar({
               background: 'rgba(255, 255, 255, 0.05)',
               border: '1px solid rgba(6, 182, 212, 0.35)',
               color: '#38bdf8',
-              padding: '6px 10px',
+              padding: '6px 8px',
               borderRadius: '8px',
               cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '4px',
-              fontSize: '0.74rem',
+              fontSize: '0.72rem',
               fontWeight: 700
             }}
           >
-            <Globe size={14} />
-            <span>{lang.toUpperCase()}</span>
+            {lang.toUpperCase()}
           </button>
 
-          {/* Efekt Sesi Butonu */}
+          {/* Bip Ses Efekti */}
           <button
             onClick={toggleSound}
             title={audioActive ? "Efekt Seslerini Kapat" : "Efekt Seslerini Aç"}
@@ -202,12 +154,12 @@ export default function Navbar({
               background: audioActive ? 'rgba(6, 182, 212, 0.12)' : 'rgba(255, 255, 255, 0.04)',
               border: audioActive ? '1px solid rgba(6, 182, 212, 0.3)' : '1px solid rgba(255, 255, 255, 0.08)',
               color: audioActive ? '#38bdf8' : '#64748b',
-              padding: '6px 9px',
+              padding: '6px 8px',
               borderRadius: '8px',
               cursor: 'pointer'
             }}
           >
-            {audioActive ? <Volume2 size={15} /> : <VolumeX size={15} />}
+            {audioActive ? <Volume2 size={14} /> : <VolumeX size={14} />}
           </button>
 
           {/* İletişim */}
@@ -218,11 +170,45 @@ export default function Navbar({
             }}
             onMouseEnter={() => sound.playHover()}
             className="btn-primary" 
-            style={{ padding: '7px 16px', fontSize: '0.8rem' }}
+            style={{ padding: '6px 14px', fontSize: '0.78rem' }}
           >
             {t.nav.contact}
           </button>
         </div>
+
+        {/* Sekmeler (Mobilde yatay akıcı kaydırma) */}
+        <nav style={{
+          width: '100%',
+          display: 'flex',
+          gap: '6px',
+          overflowX: 'auto',
+          WebkitOverflowScrolling: 'touch',
+          paddingBottom: '2px',
+          scrollbarWidth: 'none'
+        }}>
+          {tabs.map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => handleTabClick(tab.id)}
+              onMouseEnter={() => sound.playHover()}
+              className="mono"
+              style={{
+                flexShrink: 0,
+                background: currentPage === tab.id ? 'rgba(6, 182, 212, 0.2)' : 'rgba(255, 255, 255, 0.03)',
+                color: currentPage === tab.id ? '#38bdf8' : '#94a3b8',
+                border: currentPage === tab.id ? '1px solid rgba(6, 182, 212, 0.4)' : '1px solid rgba(255, 255, 255, 0.06)',
+                padding: '6px 12px',
+                borderRadius: '8px',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                whiteSpace: 'nowrap'
+              }}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </nav>
       </div>
     </header>
   );
