@@ -6,23 +6,33 @@
   color-scheme: dark;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+html, body {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
   background-color: #030712;
   color: #f8fafc;
-  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Siber Izgara Arka Planı */
+#root {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+* {
+  box-sizing: border-box !important;
+}
+
+/* Izgara Deseni */
 .grid-overlay {
-  background-size: 40px 40px;
+  width: 100% !important;
+  min-height: 100vh;
+  overflow-x: hidden !important;
+  background-size: 30px 30px;
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
@@ -32,7 +42,7 @@ body {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-/* Buton Stilleri */
+/* Butonlar */
 .btn-primary {
   background: linear-gradient(135deg, #06b6d4, #2563eb);
   border: 1px solid #38bdf8;
@@ -47,11 +57,6 @@ body {
   transition: all 0.2s ease;
 }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(6, 182, 212, 0.55);
-}
-
 .btn-secondary {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -63,11 +68,6 @@ body {
   align-items: center;
   gap: 8px;
   transition: all 0.2s ease;
-}
-
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .glass-card {
@@ -84,7 +84,7 @@ body {
   z-index: 0;
 }
 
-/* Siber Tarama ve Geçiş Animasyonları */
+/* Animasyonlar */
 @keyframes scanline {
   0% { transform: translateY(-100%); }
   100% { transform: translateY(1000%); }
@@ -92,8 +92,8 @@ body {
 
 @keyframes cyberFlash {
   0% { opacity: 1; transform: scale(1); filter: blur(0px); }
-  60% { opacity: 0.9; transform: scale(1.06); filter: blur(4px); }
-  100% { opacity: 0; transform: scale(1.15); filter: blur(16px); }
+  60% { opacity: 0.9; transform: scale(1.04); filter: blur(4px); }
+  100% { opacity: 0; transform: scale(1.1); filter: blur(16px); }
 }
 
 .scanline-bar {
@@ -109,39 +109,45 @@ body {
 }
 
 .cyber-exit {
-  animation: cyberFlash 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+  animation: cyberFlash 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
 }
 
-/* MOBİL DUYARLILIK (RESPONSIVE) */
+/* TELEFON VE TABLET DÜZENİ */
 @media (max-width: 768px) {
-  header > div {
-    height: auto !important;
-    padding: 10px 14px !important;
+  main {
+    padding: 16px 12px !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
-  header nav {
-    order: 3;
-    width: 100%;
-    overflow-x: auto;
-    padding-bottom: 4px;
+  header > div {
+    padding: 10px 12px !important;
   }
 
   h1 {
-    font-size: 1.85rem !important;
-    line-height: 1.25 !important;
+    font-size: 1.8rem !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.5px !important;
   }
 
   h2 {
-    font-size: 1.45rem !important;
+    font-size: 1.35rem !important;
   }
 
   .btn-primary, .btn-secondary {
-    width: 100%;
-    justify-content: center;
+    width: 100% !important;
+    justify-content: center !important;
   }
 
   .cyber-door-card {
-    padding: 28px 18px !important;
-    margin: 0 10px !important;
+    width: calc(100% - 24px) !important;
+    max-width: 100% !important;
+    padding: 24px 16px !important;
+    margin: 0 12px !important;
+  }
+
+  /* Grid alanlarının mobilde ekrandan taşmasını engelle */
+  div[style*="gridTemplateColumns"] {
+    grid-template-columns: 1fr !important;
   }
 }
